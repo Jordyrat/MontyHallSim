@@ -12,7 +12,7 @@ def setup():
     return
 
 
-def sim(method):
+def sim(method, output):
     choice = random.randint(0, 2)
     if method == "swap":
         host = random.randint(0, 2)
@@ -20,20 +20,28 @@ def sim(method):
             host = random.randint(0, 2)
         del copy[host]
         choice -= 1
-        print(doors)
-        print(copy[choice])
+        if output == "win":
+            return copy[choice]
+        return doors, doors[choice]
 
     else:
-        print(doors)
-        print(doors[choice])
-    return
+        if output == "win":
+            return copy[choice]
+        return doors, doors[choice]
 
 
-for x in range(999):
-    setup()
-    sim("swap")
+def getsuccessdata():
+    swapsuccess = 0
+    staysuccess = 0
+    for x in range(999):
+        setup()
+        swapsuccess += sim("swap", "win")
 
-for x in range(999):
-    setup()
-    sim("stay")
+    for x in range(999):
+        setup()
+        staysuccess += sim("stay", "win")
 
+    results = []
+    results.append(swapsuccess)
+    results.append(staysuccess)
+    return results
