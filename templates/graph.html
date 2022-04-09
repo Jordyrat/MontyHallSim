@@ -14,7 +14,7 @@
             data: {
                 labels: ['Swap', 'Stay'],
                 datasets: [{
-                    label: 'Cars Won',
+                    label: ['Cars Won', 'Cars Won'],
                     data: {{ values | safe }},
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -28,15 +28,6 @@
                 }]
             },
             options: {
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                            text: 'Monty Hall Problem 1000x Simulations per strategy'
-                    }
-                }
                 scales: {
                     y: {
                         beginAtZero: true
